@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;700&family=Montserrat:wght@400;700&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <title>Image Mapping Website</title>
+    <style>
+        /* Reset default margin and padding */
+        body, h1, p, ul, li {
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Set body background color */
+        body {
+            background: url('../Place/placesss.png') no-repeat center center fixed;
+            background-color: #343935; /* Set background color */
+            font-family: 'Comfortaa', sans-serif;
+            color: #fff; /* White text color */
+            line-height: 1.6;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh; /* Ensure the content stretches to at least the height of the viewport */
+        }
+
+        /* Navigation bar */
+        nav {
+            background-color: transparent;
+            color: #fff;
+            padding: 20px;
+            display: flex;
+            justify-content: flex-end; /* Align items to the left */
+            position: fixed; /* Fixed position */
+            width: 100%; /* Take up the full width of the viewport */
+            z-index: 1000;
+            top: 0; /* Position at the top */
+        }
+
+        .logo {
+            display: none;
+            font-size: 24px;
+            font-weight: 700;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .menu-icon {
+            display: none;
+            cursor: pointer;
+            color: #333;
+            font-size: 24px;
+        }
+
+        .menu-icon:hover {
+            color: #00aa99; /* Light green on hover */
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+        }
+
+        nav ul li {
+            margin: 0 20px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #DFDFDF;
+            font-weight: bold;
+            font-family: 'Montserrat', sans-serif;
+            transition: color 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            color: #AF8C53;
+            text-decoration: underline;
+        }
+
+        /* Main content container */
+        .big-container {
+            padding: 20px;
+            margin: 0 auto; /* Center the container horizontally */
+            flex-grow: 1; /* Allow the container to grow to fill remaining space */
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+        }
+
+        /* Image map container */
+        .image-map-container {
+            display: flex;
+            justify-content: center; /* Center horizontally */
+        }
+
+        /* Image map */
+        .image-map {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain; /* Maintain aspect ratio and fit within container */
+        }
+        h1 {
+            font-size: 36px;
+            color: #333;
+            text-align: center;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-family: 'Montserrat', sans-serif;
+            margin-top: 70px;
+        }
+        
+        /* Container for the image */
+        .image-container {
+            max-width: 1000px; /* Set maximum width */
+            max-height: 800px; /* Set maximum height */
+            overflow: hidden; /* Hide overflow to prevent image from overflowing */
+            border: 2px solid #AF8C53;
+            border-radius: 50px;
+        }
+
+        /* Left side navigation bar */
+        .left-navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            background-color: rgba(0, 0, 0, 0.5);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px 10px;
+            width: 200px;
+            height: 100%;
+            color: #fff;
+            z-index: 1;
+            transition: left 0.3s ease;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start; /* Align items to the start of the container (top) */
+        }
+
+        .left-navbar:hover {    left: 0; /* Slide in when hovered */
+        }
+
+        .left-nav-list {
+            list-style-type: none;
+            margin: 30px 0 0;
+            padding: 0;
+            display: flex; /* Change display to flex */
+            flex-direction: column; /* Arrange items vertically */
+        }
+
+        .left-nav-list li {
+            margin-bottom: 10px;
+        }
+
+        .left-nav-list li a {
+    display: block;
+    color: #fff; /* Changed text color to white */
+    text-decoration: none;
+    padding: 17px 20px;
+    border-radius: 5px;
+    margin-top: -15px; /* Adjust this value to move the button up or down */
+}
+
+
+        .left-nav-list li a:hover {
+            color: #AF8C53;
+            text-decoration: none;
+        }
+
+        .left-nav-list li.separator {
+            height: 1px;
+            background-color: #ccc;
+            margin: 5px 0;
+        }
+
+        .left-nav-list li a[href="../Video/movie gallery/movie.html"] i {
+            border: 2px solid transparent; /* Initially transparent border */
+            border-radius: 50%; /* Makes the icon circular */
+            padding: 10px; /* Add padding for better appearance */
+            transition: border-color 0.3s ease; /* Smooth transition for border color change */
+            margin-left: 20px;
+        }
+
+        .left-nav-list li a[href="../Video/movie gallery/movie.html"]:hover i {
+            border-color: #AF8C53; /* Border color on hover */
+            color: #fff;
+        }
+
+        .left-nav-list li a[href="../Bucket list/bucket.html"] i {
+            border: 2px solid transparent; /* Initially transparent border */
+            border-radius: 50%; /* Makes the icon circular */
+            padding: 10px; /* Add padding for better appearance */
+            transition: border-color 0.3s ease; /* Smooth transition for border color change */
+            margin-left: 20px;
+            
+        }
+
+        .left-nav-list li a[href="../Bucket list/bucket.html"]:hover i {
+            border-color: #AF8C53; /* Border color on hover */
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="logo">Logo</div>
+        <div class="menu-icon">&#9776;</div>
+        <ul>
+            <li><a href="../../../../../index.html">Home</a></li>
+            <li><a href="../../../../resume.html">Resume</a></li>
+            <li><a href="../../../skills.html">Skills & Biography</a></li>
+            <li><a href="place.html">Gallery</a></li>
+        </ul>
+    </nav>
+
+    <!-- Left Nav -->
+    <nav class="left-navbar">
+        <ul class="left-nav-list">
+            <br><br><br><br><br><br><br><br>
+            <!-- Right arrow icon for biography -->
+            <li><a href="../Video/movie gallery/movie.html" alt="skills" title="Skills"><i class="fas fa-arrow-left" title="TO MOVIE GALLERY">               
+            </i></a><a href="../Bucket list/bucket.html" alt="skills" title="Skills"><i class="fas fa-arrow-right" title="TO BUCKET LIST"></i></a></li>
+        </ul>
+    </nav>
+
+    <h1 id="topbutton"><span style="color: #AF8C53;">IMAGE</span><span style="color: white;"> MAPPING</span></h1>
+    <div class="big-container">
+        <div class="image-map-container">
+            <div class="image-container">
+                <img src="places.png" usemap="#image_map" class="image-map">
+            </div>
+            <map name="image_map">
+                <area alt="Australia" title="Australia" href="Australia.html" coords="183,182,369,436" shape="rect">
+                <area alt="Japan" title="Japan" href="japan.html" coords="379,116,619,259" shape="rect">
+                <area alt="China" title="China" href="China.html" coords="630,154,816,316" shape="rect">
+                <area alt="Italy" title="Italy" href="Italy.html" coords="183,442,368,626" shape="rect">
+                <area alt="Japan" title="Japan" href="Japan.html" coords="381,269,619,572" shape="rect">
+                <area alt="UK" title="UK" href="UK.html" coords="631,327,816,512" shape="rect">
+            </map>
+        </div>
+    </div>
+    <a href="#topbutton" class="back-to-top"><i class="fas fa-angle-double-up"></i></a>
+</body>
+</html>

@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hybrid Portfolio - Resume</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;700&family=Montserrat:wght@400;700&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"> <!-- Font Awesome -->
+    <style>
+        /* Reset default margin and padding */
+        body, h1, p, ul, li {
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Set body background color */
+        body {
+            background: url('13.png') no-repeat center center fixed;
+            background-size: cover;
+            background-color: #141311;
+            font-family: 'Comfortaa', sans-serif;
+            color: #333; /* Dark text color */
+            line-height: 1.6;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh; /* Ensure the content stretches to at least the height of the viewport */
+        }
+
+        /* Navigation bar */
+        nav {
+            background-color: transparent;
+            color: #fff;
+            padding: 20px;
+            display: flex;
+            justify-content: flex-end; /* Align items to the left */
+            position: fixed; /* Fixed position */
+            width: 100%; /* Take up the full width of the viewport */
+            z-index: 1000;
+            top: 0; /* Position at the top */
+        }
+
+        .logo {
+            display: none;
+            font-size: 24px;
+            font-weight: 700;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .menu-icon {
+            display: none;
+            cursor: pointer;
+            color: #333;
+            font-size: 24px;
+        }
+
+        .menu-icon:hover {
+            color: #00aa99; /* Light green on hover */
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+        }
+
+        nav ul li {
+            margin: 0 20px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #DFDFDF;
+            font-weight: bold;
+            font-family: 'Montserrat', sans-serif;
+            transition: color 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            color: #AF8C53;
+            text-decoration: underline;
+        }
+
+        /* Main content container */
+        .container {
+            padding: 20px;
+            margin: 0 auto; /* Center the container horizontally */
+            flex-grow: 1; /* Allow the container to grow to fill remaining space */
+            margin-top: 60px; /* Adjust to accommodate the fixed navbar */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column; /* Arrange items vertically */
+        }
+
+        .resume-container {
+            border: 2px solid #AF8C53;
+            padding: 20px;
+            border-radius: 10px;
+            width: calc(70vw - 40px); /* Adjusted width to consider padding */
+            background-color: #252926;
+            margin: auto;
+            margin-bottom: 100px;
+        }
+
+        .left-section {
+            width: 100%;
+            color: #fff;
+            background-color: transparent; /* Removed background color to avoid excess space */
+            padding: 20px; /* Add padding for better appearance */
+            text-align: justify; /* Justify text */
+            display: flex;
+            justify-content: center; /* Center content horizontally */
+            align-items: center; /* Center content vertically */
+        }
+
+        /* Section headings */
+        h2 {
+            font-size: 24px;
+            color: #AF8C53;
+            margin-bottom: 10px;
+        }
+
+        /* Content text */
+        .content {
+            color: #fff; /* White text color */
+            font-size: 16px;
+            margin-bottom: 20px;
+            
+        }
+
+        /* Progress bars */
+        .progress-wrapper {
+            margin-bottom: 20px;
+            
+        }
+
+        .progress-title {
+            color: #AF8C53;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        /* Back to top button */
+        .back-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #AF8C53;
+            color:  #fff;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 40px;
+            font-size: 20px;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+            z-index: 1000;
+        }
+
+        .back-to-top:hover {
+            background-color: #3a3a3a;
+        }
+        h1 {
+            font-size: 36px;
+            color: #333;
+            text-align: center;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-family: 'Montserrat', sans-serif;
+            margin-top: 70px;
+        }
+
+/* Left side navigation bar */
+.left-navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px 10px;
+    width: 200px;
+    height: 100%;
+    color: #fff;
+    z-index: 1;
+    transition: left 0.3s ease;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; /* Align items to the start of the container (top) */
+}
+
+
+.left-nav-list {
+    list-style-type: none;
+    margin: 30px 0 0;
+    padding: 0;
+    display: flex; /* Change display to flex */
+    flex-direction: column; /* Arrange items vertically */
+}
+
+.left-nav-list li {
+    margin-bottom: 10px;
+}
+
+.left-nav-list li a {
+    display: block;
+    color: #fff; /* Changed text color to white */
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+}
+
+.left-nav-list li a:hover {
+    color: #AF8C53;
+    text-decoration: none;
+}
+
+.left-nav-list li.separator {
+    height: 1px;
+    background-color: #ccc;
+    margin: 5px 0;
+}
+
+/* CSS for the arrow icon in the left navigation bar */
+.left-nav-list li a[href="Biography/biography.html"] i {
+    border: 2px solid transparent; /* Initially transparent border */
+    border-radius: 50%; /* Makes the icon circular */
+    padding: 10px; /* Add padding for better appearance */
+    transition: border-color 0.3s ease; /* Smooth transition for border color change */
+    margin-left: 20px;
+}
+
+.left-nav-list li a[href="Biography/biography.html"]:hover i {
+    border-color: #AF8C53; /* Border color on hover */
+    color: #fff;
+}
+
+/* Additional CSS to prevent hover effect on other links */
+
+
+
+
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="logo">Logo</div>
+        <div class="menu-icon">&#9776;</div>
+        <ul>
+            <li><a href="../../index.html">Home</a></li>
+            <li><a href="../resume.html">Resume</a></li>
+            <li><a href="skills.html">Skills & Biography</a></li>
+            <li><a href="Biography/Gallery/Photo/photo.html">Gallery</a></li>
+        </ul>
+    </nav>
+
+     <!-- Left side navigation bar -->
+<nav class="left-navbar">
+    <ul class="left-nav-list">
+        <li><a href="#skills"><i class="fas fa-briefcase"></i> Skills</a></li>
+        <li class="separator"></li>
+        <li><a href="#hobbies"><i class="fas fa-heart"></i> Hobbies</a></li>
+        <li class="separator"></li>
+        <li><a href="#interests"><i class="fas fa-book"></i> Interests</a></li>
+        <!-- Right arrow icon for biography -->
+        <li><a href="Biography/biography.html" alt="Biography" title="TO BIOGRAPHY"><i class="fas fa-arrow-right"></i></a></li>
+    </ul>
+</nav>
+
+
+    <h1 id="topbutton"><span style="color: #AF8C53;">SKI</span><span style="color: white;">LLS</span></h1>
+    <div class="container">
+        <div class="resume-container" id="skills">        
+            <div class="left-section">
+                <div class="content">
+                    <h2>Skills</h2>
+                    <div class="progress-wrapper">
+                        <p><blockquote>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;As a second-year college student, I pride myself on being a versatile multitasker, capable of juggling various responsibilities with ease <sup>1</sup>.
+                            My ability to understand people deeply enables me to connect on a personal level, fostering strong relationships both in academic and social settings<sup>2</sup>.
+                            Moreover, I embrace challenges as opportunities for growth, consistently striving to expand my knowledge and skills<sup>3</sup>.</blockquote></p>
+                        <p><blockquote>While I acknowledge that my current skill set may not be perfect, I am dedicated to continuous improvement, making strides every day to enhance my abilities<sup>4</sup>.
+                            Perseverance is ingrained in my approach, I persevere through difficulties, refusing to give up until I achieve my goals<sup>5</sup>.
+                            I thrive in dynamic environments, relishing the chance to take calculated risks and learn from new experiences<sup>6</sup>.</blockquote></p>
+                        <p><blockquote>In addition to my strengths in multitasking and interpersonal understanding, I have a natural aptitude for fast learning, absorbing new information rapidly and applying it effectively<sup>7</sup>.
+                            My adaptability and willingness to embrace change serve me well, allowing me to navigate various situations with confidence and agility<sup>8</sup>. Furthermore, my skills are particularly well-suited for social environments,
+                            where my outgoing nature and ability to empathize facilitate effective communication and collaboration<sup>9</sup>.</blockquote></p>
+                        <p><blockquote>Overall, I am a determined individual who values growth, resilience, and the pursuit of excellence in all endeavors<sup>10</sup>.
+                            With a commitment to continuous learning and self-improvement, I am poised to thrive both academically and professionally,
+                            making meaningful contributions to any team or community I am a part of<sup>11</sup>.</blockquote></p>                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="resume-container" id="hobbies">        
+                <div class="left-section">
+                    <div class="content">
+                        <h2>Hobbies</h2>
+                        <div class="progress-wrapper">
+                            <p><blockquote>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;As a second-year college student, I have a diverse range of hobbies that keep me entertained and active<sup>1</sup>. Playing basketball, karate,
+                                and badminton are among my favorite ways to stay fit and socialize with friends<sup>2</sup>. Whether it's shooting hoops on the court or practicing
+                                martial arts, these activities energize me and help me unwind from the demands of college life<sup>3</sup>. In my leisure time, I also enjoy immersing
+                                myself in video games and solving puzzles, finding joy in the mental challenges they offer<sup>4</sup>.</blockquote></p>
+                            <p><blockquote>Additionally, I have a passion for coding, as it allows me to unleash my creativity and problem-solving skills<sup>5</sup>. Exploring new things is something I thrive on; whether it's trying
+                                a new hobby or venturing into uncharted territories, I love the excitement of discovery<sup>6</sup>. And on quieter days, nothing beats the simple
+                                pleasure of curling up with a good book, where I can escape into different worlds and broaden my horizons through reading<sup>7</sup>.</blockquote></p>         
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="resume-container" id="interests">        
+                <div class="left-section">
+                    <div class="content">
+                        <h2>Interests</h2>
+                        <div class="progress-wrapper">
+                            <p><blockquote>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Coding has always fascinated me<sup>1</sup>. It's not just about learning; it's about growing my skills while discovering new things<sup>2</sup>. I'm curious about the different career paths in the
+                                field and how coding translates into real-world applications. Honestly, I'm interested in a lot of things, and I want to explore as much as I can<sup>3</sup>.
+                            Apart from coding, I'm intrigued by technology as a whole<sup>4</sup>. From software to gadgets, I enjoy understanding how things work and how they can be improved<sup>5</sup>. Additionally, I have a keen interest in entrepreneurship<sup>6</sup>.
+                                The idea of creating something from scratch and turning it into a successful venture excites me<sup>7</sup>. Furthermore, I'm drawn to creativity in various forms<sup>8</sup>. Whether it's art, music,
+                                or writing, I find inspiration in expressing myself artistically<sup>9</sup>. Exploring these interests allows me to broaden my horizons and discover new passions along the way<sup>10</sup>.</blockquote></p> 
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <a href="#topbutton" class="back-to-top"><i class="fas fa-angle-double-up"></i></a>
+</body>
+</html>
+

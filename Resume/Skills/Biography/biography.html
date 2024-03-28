@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hybrid Portfolio - Biography</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;700&family=Montserrat:wght@400;700&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"> <!-- Font Awesome -->
+    <style>
+        /* Reset default margin and padding */
+        body, h1, p, ul, li {
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Set body background color */
+        body {
+            background: url('13.png') no-repeat center center fixed;
+            background-size: cover;
+            background-color: #141311;
+            font-family: 'Comfortaa', sans-serif;
+            color: #333; /* Dark text color */
+            line-height: 1.6;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh; /* Ensure the content stretches to at least the height of the viewport */
+        }
+
+        /* Navigation bar */
+        nav {
+            background-color: transparent;
+            color: #fff;
+            padding: 20px;
+            display: flex;
+            justify-content: flex-end; /* Align items to the left */
+            position: fixed; /* Fixed position */
+            width: 100%; /* Take up the full width of the viewport */
+            z-index: 1000;
+            top: 0; /* Position at the top */
+        }
+
+        .logo {
+            display: none;
+            font-size: 24px;
+            font-weight: 700;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .menu-icon {
+            display: none;
+            cursor: pointer;
+            color: #333;
+            font-size: 24px;
+        }
+
+        .menu-icon:hover {
+            color: #00aa99; /* Light green on hover */
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+        }
+
+        nav ul li {
+            margin: 0 20px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #DFDFDF;
+            font-weight: bold;
+            font-family: 'Montserrat', sans-serif;
+            transition: color 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            color: #AF8C53;
+            text-decoration: underline;
+        }
+
+        /* Main content container */
+        .container {
+            padding: 20px;
+            margin: 0 auto; /* Center the container horizontally */
+            flex-grow: 1; /* Allow the container to grow to fill remaining space */
+            margin-top: 60px; /* Adjust to accommodate the fixed navbar */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column; /* Arrange items vertically */
+        }
+
+        .resume-container {
+            border: 2px solid #AF8C53;
+            padding: 20px;
+            border-radius: 10px;
+            width: calc(70vw - 40px); /* Adjusted width to consider padding */
+            background-color: #252926;
+            margin: auto;
+            margin-bottom: 40px; /* Added margin-bottom */
+        }
+
+        .left-section {
+            width: 100%;
+            color: #fff;
+            background-color: transparent; /* Removed background color to avoid excess space */
+            padding: 20px; /* Add padding for better appearance */
+            text-align: justify; /* Justify text */
+            display: flex;
+            justify-content: center; /* Center content horizontally */
+            align-items: center; /* Center content vertically */
+        }
+
+        /* Section headings */
+        h2 {
+            font-size: 24px;
+            color: #AF8C53;
+            margin-bottom: 10px;
+        }
+
+        /* Content text */
+        .content {
+            color: #fff; /* White text color */
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+
+        /* Progress bars */
+        .progress-wrapper {
+            margin-bottom: 20px;
+        }
+
+        .progress-title {
+            color: #AF8C53;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        /* Back to top button */
+        .back-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #AF8C53;
+            color:  #fff;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 40px;
+            font-size: 20px;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+            z-index: 1000;
+        }
+
+        .back-to-top:hover {
+            background-color: #3a3a3a;
+        }
+        h1 {
+            font-size: 36px;
+            color: #333;
+            text-align: center;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-family: 'Montserrat', sans-serif;
+            margin-top: 70px;
+        }
+
+        /* Left side navigation bar */
+        .left-navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            background-color: rgba(0, 0, 0, 0.5);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px 10px;
+            width: 200px;
+            height: 100%;
+            color: #fff;
+            z-index: 1;
+            transition: left 0.3s ease;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start; /* Align items to the start of the container (top) */
+        }
+
+        .left-navbar:hover {    left: 0; /* Slide in when hovered */
+        }
+
+        .left-nav-list {
+            list-style-type: none;
+            margin: 30px 0 0;
+            padding: 0;
+            display: flex; /* Change display to flex */
+            flex-direction: column; /* Arrange items vertically */
+        }
+
+        .left-nav-list li {
+            margin-bottom: 10px;
+        }
+
+        .left-nav-list li a {
+            display: block;
+            color: #fff; /* Changed text color to white */
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+        }
+
+        .left-nav-list li a:hover {
+            color: #AF8C53;
+            text-decoration: none;
+        }
+
+        .left-nav-list li.separator {
+            height: 1px;
+            background-color: #ccc;
+            margin: 5px 0;
+        }
+
+        .left-nav-list li a[href="../skills.html"] i {
+            border: 2px solid transparent; /* Initially transparent border */
+            border-radius: 50%; /* Makes the icon circular */
+            padding: 10px; /* Add padding for better appearance */
+            transition: border-color 0.3s ease; /* Smooth transition for border color change */
+            margin-left: 20px;
+        }
+
+        .left-nav-list li a[href="../skills.html"]:hover i {
+            border-color: #AF8C53; /* Border color on hover */
+            color: #fff;
+        }
+
+
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="logo">Logo</div>
+        <div class="menu-icon">&#9776;</div>
+        <ul>
+            <li><a href="../../../index.html">Home</a></li>
+            <li><a href="../../resume.html">Resume</a></li>
+            <li><a href="../skills.html">Skills & Biography</a></li>
+            <li><a href="Gallery/Photo/photo.html">Gallery</a></li>
+        </ul>
+    </nav>
+
+    <!-- Left side navigation bar -->
+    <nav class="left-navbar">
+        <ul class="left-nav-list">
+            <li><a href="#childhood"><i class="fas fa-child"></i> Childhood</a></li>
+            <li class="separator"></li>
+            <li><a href="#teenage"><i class="fas fa-user-graduate"></i> Teenage</a></li>
+            <li class="separator"></li>
+            <li><a href="#college"><i class="fas fa-university"></i> College</a></li>
+            <!-- Right arrow icon for biography -->
+            <li><a href="../skills.html" alt="skills" title="TO SKILLS"><i class="fas fa-arrow-left"></i></a></li>
+        </ul>
+    </nav>
+
+    <h1 id="topbutton"><span style="color: #AF8C53;">BIO</span><span style="color: white;">GRAPHY</span></h1>
+    <div class="container">
+        <div class="resume-container" id="childhood">        
+            <div class="left-section">
+                <div class="content">
+                    <h2>Childhood</h2>
+                    <div class="progress-wrapper">
+                        <p>
+                            <p><blockquote>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;My full name is Ivan Kristoffer M. Vestidas, and my childhood was filled with joyous moments spent with my beloved family and friends. Before delving into my childhood adventures, let me introduce my parents, Custodio and Ophelia, and my youngest brother, Miguel. One delightful memory that stands out from my childhood involves my cousin and me embarking on mini mountain-climbing escapades. We made a playful bet that the last one to descend would treat the other to a sumptuous dried mango treat. Despite my best efforts, I ended up losing the race and, to this day, owe my cousin that promised dried mango snack. My hobbies have been an integral part of my childhood, ranging from playing games and crafting to engaging in badminton and basketball. The thrill of discovering new things and learning has always captivated my curiosity.</blockquote></p>
+                            <p><blockquote>My academic journey began at St. Dominic de Guzman School, where I spent my formative years up until senior high school. The nurturing environment and supportive community at the school left a lasting impact on my educational experience. When I think back on my early years, I am appreciative of all the amazing experiences I had. I can't help but feel a certain kind of nostalgia, and I frequently find myself longing that those happy times might be repeated. All of my memories—whether they involve hobbies or scaling miniature mountains—have a particular place in my heart and have shaped who I am now. I will always treasure the memories of the love and friendship I experienced with my family and friends over those years. Thats why i want to keep dreaming and look forward on my future plans.</blockquote></p>
+                            <p><blockquote>Throughout my childhood, my family instilled in me values of perseverance and kindness, which have guided me through life's challenges. Every summer, my family and I would embark on memorable vacations to different destinations, creating cherished memories that I hold dear. As a child, I was fascinated by nature and spent countless hours exploring the outdoors, discovering the beauty of the world around me. I fondly remember the laughter-filled gatherings with extended family during holidays and special occasions, creating a sense of warmth and togetherness. One of the highlights of my childhood was participating in community events and volunteering, which taught me the importance of giving back to society. Reflecting on my childhood brings a sense of gratitude for the love, support, and opportunities that have shaped me into the person I am today.</blockquote></p>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Teenage Section -->
+        <div class="resume-container" id="teenage">        
+            <div class="left-section">
+                <div class="content">
+                    <h2>Teenage</h2>
+                    <div class="progress-wrapper">
+                        <p><blockquote>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;As time went by, I found myself growing and facing experiences that played a vital role in shaping the person I am today. Learning to stay focused and on track became a crucial aspect of my journey during these transformative years.</blockquote></p>
+                        <p><blockquote>Meeting my true friends, Jirex and Joshua, marked a significant chapter in my life. They've been constants, standing by me for many years and contributing to my growth as a responsible individual.</blockquote></p>
+                        <p><blockquote>In these years, academic challenges surfaced, particularly during my 7th and 8th-grade years. Despite facing failures in some subjects, my determination to gain valuable experiences remained unwavering. Overcoming these challenges, I eventually achieved my goal of graduating with honors in my 12th-grade year.</blockquote></p>
+                        <p><blockquote>The teenage years taught me invaluable lessons – the importance of earning one's achievements, the resilience to bounce back after failures, and the significance of continuous learning. Guiding myself with sound advice became a key strategy for navigating through the twists and turns of life.</blockquote></p>
+                        <p><blockquote>A clear passion emerged during this phase of my life – the desire to become a programmer. I envisioned working on projects that I could take pride in, with a particular dream of creating games, fueled by the joy and fascination I found in playing them.</blockquote></p>
+                        <p><blockquote>These years have been a journey of self-discovery, deepening friendships, and unwavering determination. The simple yet profound lessons learned during this time have guided me toward becoming a responsible and successful individual. I am grateful for the challenges that have shaped me and for the support of my friends and family along the way.</blockquote></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- College Section -->
+        <div class="resume-container" id="college">        
+            <div class="left-section">
+                <div class="content">
+                    <h2>College</h2>
+                    <div class="progress-wrapper">
+                        <p><blockquote>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;During my college years, I encountered various challenges and gained new experiences that have contributed significantly to my personal and academic growth. As a second-year BSIT student at the University of the East (UE), I've had the opportunity to meet a diverse group of people and establish friendships built on the shared pursuit of knowledge and enjoyment.</blockquote></p>
+                        <p><blockquote>Being a part of the COMSSO has been a highlight of my college journey. Serving as the Vice President of Special Events, I find joy in actively contributing to the organization's activities. I look forward to continuing my involvement and furthering the impact of COMSSO.</blockquote></p>
+                        <p><blockquote>Participating in different organizations and events has been an enriching experience. It has provided me with a platform to engage with my peers, share knowledge, and have fun while doing so. These activities have complemented my academic pursuits, creating a holistic and fulfilling college experience.</blockquote></p>
+                        <p><blockquote>As a student in the field of Information Technology, I've acquired valuable skills that align with my dream of becoming a programmer. The coursework and practical learning have played a crucial role in honing my abilities and bringing me closer to achieving my career aspirations.</blockquote></p>
+                        <p><blockquote>Looking ahead, I am enthusiastic about completing my course at UE and realizing my goals in the field of Information Technology. The college years have been a dynamic period of learning, growth, and building connections that will undoubtedly shape my future endeavors.</blockquote></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <a href="#topbutton" class="back-to-top"><i class="fas fa-angle-double-up"></i></a>
+</body>
+</html>
+

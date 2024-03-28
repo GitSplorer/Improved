@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hybrid Portfolio - Photo Gallery</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;700&family=Montserrat:wght@400;700&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"> <!-- Font Awesome -->
+    <style>
+        /* Reset default margin and padding */
+        body, h1, p, ul, li {
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Set body background color */
+        body {
+            background: url('black.png') no-repeat center center fixed;
+            background-size: cover;
+            background-color: #141311;
+            font-family: 'Comfortaa', sans-serif;
+            color: #333; /* Dark text color */
+            line-height: 1.6;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh; /* Ensure the content stretches to at least the height of the viewport */
+        }
+
+        /* Navigation bar */
+        nav {
+            background-color: transparent;
+            color: #fff;
+            padding: 20px;
+            display: flex;
+            justify-content: flex-end; /* Align items to the left */
+            position: fixed; /* Fixed position */
+            width: 100%; /* Take up the full width of the viewport */
+            z-index: 1000;
+            top: 0; /* Position at the top */
+        }
+
+        .logo {
+            display: none;
+            font-size: 24px;
+            font-weight: 700;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .menu-icon {
+            display: none;
+            cursor: pointer;
+            color: #333;
+            font-size: 24px;
+        }
+
+        .menu-icon:hover {
+            color: #00aa99; /* Light green on hover */
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+        }
+
+        nav ul li {
+            margin: 0 20px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #DFDFDF;
+            font-weight: bold;
+            font-family: 'Montserrat', sans-serif;
+            transition: color 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            color: #AF8C53;
+            text-decoration: underline;
+        }
+
+        /* Main content container */
+        .container {
+            padding: 20px;
+            margin: 0 auto; /* Center the container horizontally */
+            flex-grow: 1; /* Allow the container to grow to fill remaining space */
+            margin-top: 60px; /* Adjust to accommodate the fixed navbar */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column; /* Arrange items vertically */
+        }
+
+        .resume-container {
+            border: 2px solid #AF8C53;
+            padding: 20px;
+            border-radius: 10px;
+            width: calc(70vw - 40px); /* Adjusted width to consider padding */
+            background-color: #252926;
+            margin: auto;
+            margin-bottom: 40px; /* Added margin-bottom */
+        }
+
+        .left-section {
+            width: 100%;
+            color: #fff;
+            background-color: transparent; /* Removed background color to avoid excess space */
+            padding: 20px; /* Add padding for better appearance */
+            text-align: justify; /* Justify text */
+            display: flex;
+            justify-content: center; /* Center content horizontally */
+            align-items: center; /* Center content vertically */
+        }
+
+        /* Section headings */
+        h2 {
+            font-size: 24px;
+            color: #AF8C53;
+            margin-bottom: 10px;
+        }
+
+        /* Content text */
+        .content {
+            color: #fff; /* White text color */
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+
+        /* Progress bars */
+        .progress-wrapper {
+            margin-bottom: 20px;
+        }
+
+        .progress-title {
+            color: #AF8C53;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        /* Back to top button */
+        .back-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #AF8C53;
+            color:  #fff;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 40px;
+            font-size: 20px;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+            z-index: 1000;
+        }
+
+        .back-to-top:hover {
+            background-color: #3a3a3a;
+        }
+        h1 {
+            font-size: 36px;
+            color: #333;
+            text-align: center;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-family: 'Montserrat', sans-serif;
+            margin-top: 70px;
+        }
+
+        /* Left side navigation bar */
+        .left-navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            background-color: rgba(0, 0, 0, 0.5);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px 10px;
+            width: 200px;
+            height: 100%;
+            color: #fff;
+            z-index: 1;
+            transition: left 0.3s ease;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start; /* Align items to the start of the container (top) */
+        }
+
+        .left-navbar:hover {    left: 0; /* Slide in when hovered */
+        }
+
+        .left-nav-list {
+            list-style-type: none;
+            margin: 30px 0 0;
+            padding: 0;
+            display: flex; /* Change display to flex */
+            flex-direction: column; /* Arrange items vertically */
+        }
+
+        .left-nav-list li {
+            margin-bottom: 10px;
+        }
+
+        .left-nav-list li a {
+            display: block;
+            color: #fff; /* Changed text color to white */
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+        }
+
+        .left-nav-list li a:hover {
+            color: #AF8C53;
+            text-decoration: none;
+        }
+
+        .left-nav-list li.separator {
+            height: 1px;
+            background-color: #ccc;
+            margin: 5px 0;
+        }
+
+        .left-nav-list li a[href="../Music/music.html"] i {
+            border: 2px solid transparent; /* Initially transparent border */
+            border-radius: 50%; /* Makes the icon circular */
+            padding: 10px; /* Add padding for better appearance */
+            transition: border-color 0.3s ease; /* Smooth transition for border color change */
+            margin-left: 20px;
+        }
+
+        .left-nav-list li a[href="../Music/music.html"]:hover i {
+            border-color: #AF8C53; /* Border color on hover */
+            color: #fff;
+        }
+
+
+        /* Gallery container */
+.gallery {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+.gallery-item {
+    width: calc(20% - 20px);
+    height: 350px; /* Set a fixed height for each gallery item */
+    margin-bottom: 20px;
+    overflow: hidden;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.gallery-item img {
+    width: 100%; /* Ensure images fill their parent container */
+    height: 100%; /* Ensure images fill their parent container */
+    object-fit: cover; /* Maintain aspect ratio and cover the entire container */
+    border-radius: 10px;
+    transition: transform 0.3s ease;
+}
+
+
+        .gallery-item img:hover {
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+<base href="#gallery">
+<body>  
+    <nav>
+        <div class="logo">Logo</div>
+        <div class="menu-icon">&#9776;</div>
+        <ul>
+            <li><a href="../../../../../index.html">Home</a></li>
+            <li><a href="../../../../resume.html">Resume</a></li>
+            <li><a href="../../../skills.html">Skills & Biography</a></li>
+            <li><a href="photo.html">Gallery</a></li>
+        </ul>
+    </nav>
+
+    <!-- Left side navigation bar -->
+    <nav class="left-navbar">
+        <ul class="left-nav-list">
+            <li><a href="#childhood"><i class="fas fa-child"></i> Childhood</a></li>
+            <li class="separator"></li>
+            <li><a href="#teenage"><i class="fas fa-user-graduate"></i> Teenage</a></li>
+            <li class="separator"></li>
+            <li><a href="#college"><i class="fas fa-university"></i> College</a></li>
+            <!-- Right arrow icon for biography -->
+            <li><a href="../Music/music.html" alt="skills" title="Skills"><i class="fas fa-arrow-right" title="TO MUSIC GALLERY"></i></a></li>
+        </ul>
+    </nav>
+
+    <h1 id="topbutton"><span style="color: #AF8C53;">PHOTO</span><span style="color: white;">GALLERY</span></h1>
+    <div class="container">
+        <div class="resume-container" id="childhood">        
+            <div class="left-section">
+                <div class="content">
+                    <h2>Childhood</h2>
+                    <div class="progress-wrapper">
+                        <!-- Childhood content -->
+                    </div>
+                </div>
+            </div>
+            <!-- Gallery for Childhood -->
+            <div class="gallery">
+                <div class="gallery-item">
+                    <a href="../Photo/ChildPhotos/Childhood1.jpg" target="#gallery"><img src="../Photo/ChildPhotos/Childhood1.jpg" alt="Childhood Image 1" title= "Childhood"></a>
+                </div>
+                <div class="gallery-item">
+                    <a href="../Photo/ChildPhotos/Childhood2.jpg" target="#gallery"><img src="../Photo/ChildPhotos/Childhood2.jpg" alt="Childhood Image 2" title= "Childhood"></a> 
+                </div>
+                <div class="gallery-item">
+                    <a href="../Photo/ChildPhotos/Childhood3.jpg" target="#gallery"><img src="../Photo/ChildPhotos/Childhood3.jpg" alt="Childhood Image 3" title= "Childhood"></a>
+                </div>
+                <div class="gallery-item">
+                    <a href="../Photo/ChildPhotos/Childhood4.jpg" target="#gallery"><img src="../Photo/ChildPhotos/Childhood4.jpg" alt="Childhood Image 4" title= "Childhood"></a>
+                </div>
+                <div class="gallery-item">
+                    <a href="../Photo/ChildPhotos/Childhood5.jpg" target="#gallery"><img src="../Photo/ChildPhotos/Childhood5.jpg" alt="Childhood Image 5" title= "Childhood"></a>
+                </div>
+                <div class="gallery-item">
+                    <a href="../Photo/ChildPhotos/Childhood6.jpg" target="#gallery"><img src="../Photo/ChildPhotos/Childhood6.jpg" alt="Childhood Image 6" title= "Childhood"></a>
+                </div>
+                <div class="gallery-item">
+                    <a href="../Photo/ChildPhotos/Childhood7.jpg" target="#gallery"><img src="../Photo/ChildPhotos/Childhood7.jpg" alt="Childhood Image 7" title= "Childhood"></a>
+                </div>
+                <div class="gallery-item">
+                    <a href="../Photo/ChildPhotos/Childhood8.jpg" target="#gallery"><img src="../Photo/ChildPhotos/Childhood8.jpg" alt="Childhood Image 8" title= "Childhood"></a>
+                </div>
+                <div class="gallery-item">
+                    <a href="../Photo/ChildPhotos/Childhood9.jpg" target="#gallery"><img src="../Photo/ChildPhotos/Childhood9.jpg" alt="Childhood Image 9" title= "Childhood"></a>
+                </div>
+                <div class="gallery-item">
+                    <a href="../Photo/ChildPhotos/Childhood10.jpg" target="#gallery"><img src="../Photo/ChildPhotos/Childhood10.jpg" alt="Childhood Image 10" title= "Childhood"></a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Teenage Section -->
+        <div class="resume-container" id="teenage">        
+            <div class="left-section">
+                <div class="content">
+                    <h2>Teenage</h2>
+                    <div class="progress-wrapper">
+                        <!-- Teenage content -->
+                    </div>
+                </div>
+            </div>
+            <!-- Gallery for Teenage -->
+            <div class="gallery">
+                <div class="gallery-item">
+                    <a href="../Photo/TeenPhotos/Teen1.jpg" target="#gallery"><img src="../Photo/TeenPhotos/Teen1.jpg" alt="Teenage Image 1" title= "Tenager"></a>
+                </div>
+                <div class="gallery-item">
+                    <a href="../Photo/TeenPhotos/Teen2.jpg" target="#gallery"><img src="../Photo/TeenPhotos/Teen2.jpg" alt="Teenage Image 2" title= "Tenager"></a>
+                </div>
+                <div class="gallery-item">
+                    <a href="../Photo/TeenPhotos/Teen3.jpg" target="#gallery"><img src="../Photo/TeenPhotos/Teen3.jpg" alt="Teenage Image 3" title= "Tenager"></a>
+                </div>
+                <div class="gallery-item">
+                    <a href="../Photo/TeenPhotos/Teen4.jpg" target="#gallery"><img src="../Photo/TeenPhotos/Teen4.jpg" alt="Teenage Image 4" title= "Tenager"></a>
+                </div>
+                <div class="gallery-item">
+                    <a href="../Photo/TeenPhotos/Teen5.jpg" target="#gallery"><img src="../Photo/TeenPhotos/Teen5.jpg" alt="Teenage Image 5" title= "Tenager"></a>
+                </div>
+                <div class="gallery-item">
+                    <a href="../Photo/TeenPhotos/Teen6.jpg" target="#gallery"><img src="../Photo/TeenPhotos/Teen6.jpg" alt="Teenage Image 6" title= "Tenager"></a>
+                </div>
+                <div class="gallery-item">
+                    <a href="../Photo/TeenPhotos/Teen7.jpg" target="#gallery"><img src="../Photo/TeenPhotos/Teen7.jpg" alt="Teenage Image 7" title= "Tenager"></a>
+                </div>
+                <div class="gallery-item">
+                    <a href="../Photo/TeenPhotos/Teen8.jpg" target="#gallery"><img src="../Photo/TeenPhotos/Teen8.jpg" alt="Teenage Image 8" title= "Tenager"></a>
+                </div>
+                <div class="gallery-item">
+                    <a href="../Photo/TeenPhotos/Teen9.jpg" target="#gallery"><img src="../Photo/TeenPhotos/Teen9.jpg" alt="Teenage Image 9" title= "Tenager"></a>
+                </div>
+                <div class="gallery-item">
+                    <a href="../Photo/TeenPhotos/Teen10.jpg" target="#gallery"><img src="../Photo/TeenPhotos/Teen10.jpg" alt="Teenage Image 10" title= "Tenager"></a>
+                </div>
+            </div>
+        </div>
+
+        <!-- College Section -->
+        <div class="resume-container" id="college">        
+            <div class="left-section">
+                <div class="content">
+                    <h2>College</h2>
+                    <div class="progress-wrapper">
+                        <!-- College content -->
+                    </div>
+                </div>
+            </div>
+            <!-- Gallery for College -->
+            <div class="gallery">
+                <div class="gallery-item">
+                    <a href="../Photo/CollegePhotos/College1.jpg" target="#gallery"><img src="../Photo/CollegePhotos/College1.jpg" alt="College Image 1" title="College"></a>
+                </div>
+                <div class="gallery-item">
+                    <a href="../Photo/CollegePhotos/College2.jpg" target="#gallery"><img src="../Photo/CollegePhotos/College2.jpg" alt="College Image 2" title="College"></a>
+                </div>
+                <div class="gallery-item">
+                    <a href="../Photo/CollegePhotos/College3.jpg" target="#gallery"><img src="../Photo/CollegePhotos/College3.jpg" alt="College Image 3" title="College"></a>
+                </div>
+                <div class="gallery-item">
+                    <a href="../Photo/CollegePhotos/College4.jpg" target="#gallery"><img src="../Photo/CollegePhotos/College4.jpg" alt="College Image 4" title="College"></a>
+                </div>
+                <div class="gallery-item">
+                    <a href="../Photo/CollegePhotos/College5.jpg" target="#gallery"><img src="../Photo/CollegePhotos/College5.jpg" alt="College Image 5" title="College"></a>
+                </div>
+                <div class="gallery-item">
+                    <a href="../Photo/CollegePhotos/College6.jpg" target="#gallery"><img src="../Photo/CollegePhotos/College6.jpg" alt="College Image 6" title="College"></a>
+                </div>
+                <div class="gallery-item">
+                    <a href="../Photo/CollegePhotos/College7.jpg" target="#gallery"><img src="../Photo/CollegePhotos/College7.jpg" alt="College Image 7" title="College"></a>
+                </div>
+                <div class="gallery-item">
+                    <a href="../Photo/CollegePhotos/College8.jpg" target="#gallery"><img src="../Photo/CollegePhotos/College8.jpg" alt="College Image 8" title="College"></a>
+                </div>
+                <div class="gallery-item">
+                    <a href="../Photo/CollegePhotos/College9.jpg" target="#gallery"><img src="../Photo/CollegePhotos/College9.jpg" alt="College Image 9" title="College"></a>
+                </div>
+                <div class="gallery-item">
+                    <a href="../Photo/CollegePhotos/College10.jpg" target="#gallery"><img src="../Photo/CollegePhotos/College10.jpg" alt="College Image 10" title="College"></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <a href="#topbutton" class="back-to-top"><i class="fas fa-angle-double-up"></i></a>
+</body>
+</html>
+

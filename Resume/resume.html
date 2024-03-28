@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hybrid Portfolio - Resume</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;700&family=Montserrat:wght@400;700&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"> <!-- Font Awesome -->
+    <style>
+        /* Reset default margin and padding */
+        body, h1, p, ul, li {
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Set body background color */
+        body {
+            background: url('CLients.png') no-repeat center center fixed;
+            background-size: cover;
+            background-color: #141311;
+            font-family: 'Comfortaa', sans-serif;
+            color: #333; /* Dark text color */
+            line-height: 1.6;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh; /* Ensure the content stretches to at least the height of the viewport */
+        }
+
+        /* Navigation bar */
+        nav {
+            background-color: transparent;
+            color: #fff;
+            padding: 20px;
+            display: flex;
+            justify-content: flex-end; /* Align items to the left */
+            position: fixed; /* Fixed position */
+            width: 100%; /* Take up the full width of the viewport */
+            z-index: 1000;
+            top: 0; /* Position at the top */
+        }
+
+        .logo {
+            display: none;
+            font-size: 24px;
+            font-weight: 700;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .menu-icon {
+            display: none;
+            cursor: pointer;
+            color: #333;
+            font-size: 24px;
+        }
+
+        .menu-icon:hover {
+            color: #00aa99; /* Light green on hover */
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+        }
+
+        nav ul li {
+            margin: 0 20px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #DFDFDF;
+            font-weight: bold;
+            font-family: 'Montserrat', sans-serif;
+            transition: color 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            color: #AF8C53;
+            text-decoration: underline;
+        }
+
+        /* Main content container */
+        .container {
+            padding: 20px;
+            margin-left: 20px; /* Adjust the left margin */
+            margin-right: 20px; /* Add right margin for symmetry */
+            flex-grow: 1; /* Allow the container to grow to fill remaining space */
+            margin-top: 60px; /* Adjust to accommodate the fixed navbar */
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+        }
+
+        /* Resume content container */
+        .resume-container {
+            border: 2px solid #AF8C53;
+            padding: 20px;
+            border-radius: 10px;
+            width: 70vw;
+            display: flex;
+            justify-content: space-between;
+            background-color: #252926;
+        }
+
+        /* Left section */
+        .left-section {
+            width: 40%;
+            color: #fff;
+            background-color: #252926;
+            padding: 20px; /* Add padding for better appearance */
+        }
+
+        /* Right section */
+        .right-section {
+            width: 50%;
+            color: #fff;
+            background-color: #252926; /* Dark background */
+            padding: 20px; /* Add padding for better appearance */
+        }
+
+        /* Circular image */
+        .circular-img {
+            width: 80px; /* Adjust image size */
+            height: 80px; /* Adjust image size */
+            border-radius: 50%; /* Makes it circular */
+            overflow: hidden; /* Ensures the image stays within the circle */
+            margin-bottom: 20px;
+        }
+
+        .circular-img img {
+            width: 100%; /* Make the image fill the circle */
+            height: auto; /* Maintain aspect ratio */
+        }
+
+        /* Section headings */
+        h2 {
+            font-size: 24px;
+            color: #AF8C53;
+            margin-bottom: 10px;
+        }
+
+        /* Content text */
+        .content {
+            color: #fff; /* White text color */
+            font-size: 16px;
+            margin-bottom: 20px;
+            
+        }
+
+        /* Progress bars */
+        .progress {
+            height: 20px;
+            background-color: #3a3a3a;
+            border-radius: 10px;
+            margin-bottom: 10px;
+        }
+
+        .progress-bar {
+            height: 100%;
+            border-radius: 10px;
+            background-color: #AF8C53; /* Progress bar color */
+        }
+
+        /* Section headings */
+        h1 {
+            font-size: 36px;
+            color: #333;
+            text-align: center;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-family: 'Montserrat', sans-serif;
+            margin-top: 70px;
+        }
+
+        /* Back to top button */
+        .back-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #AF8C53;
+            color: #fff;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 40px;
+            font-size: 20px;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+            z-index: 1000;
+        }
+
+        .back-to-top:hover {
+            background-color: #3a3a3a;
+        }
+
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="logo">Logo</div>
+        <div class="menu-icon">&#9776;</div>
+        <ul>
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="resume.html">Resume</a></li>
+            <li><a href="Skills/skills.html">Skills & Biography</a></li>
+            <li><a href="Skills/Biography/Gallery/Photo/photo.html">Gallery</a></li>
+        </ul>
+        
+    </nav>
+    <h1 id="topbutton"><span style="color: #AF8C53;">RES</span><span style="color: white;">UME</span></h1>
+    <div class="container">
+        <div class="resume-container">        
+            <div class="left-section">
+                <div class="circular-img">
+                    <img src="Ivan.jpg" alt="Profile Picture">
+                </div>
+                <div class="content">
+                    <h2>Skills</h2>
+                    <ul>
+                        <li>Programming Languages:
+                            <div class="progress">
+                                <div class="progress-bar" style="width: 80%;"></div> <!-- Adjust width based on skill level -->
+                            </div>
+                        </li>
+                        <li>Web Development:
+                            <div class="progress">
+                                <div class="progress-bar" style="width: 80%;"></div> <!-- Adjust width based on skill level -->
+                            </div>
+                        </li>
+                        <li>Database Management:
+                            <div class="progress">
+                                <div class="progress-bar" style="width: 70%;"></div> <!-- Adjust width based on skill level -->
+                            </div>
+                        </li>
+                    </ul>
+                    <h2>Contact</h2>
+                        <p><i class="fas fa-envelope"></i> Email: ivanvestidas@gmail.com</p>
+                        <p><i class="fas fa-phone"></i> Phone: (+63) 961-839-7253</p>
+                        <p><i class="fab fa-github"></i> Github: @Gitsplorer</p>
+                        <p><i class="fas fa-map-marker-alt"></i> Address: Blk 3 Lot 14 Sta. Maria Bulacan</p>
+                </div>
+            </div>
+            <div class="right-section">
+                <h2>Name</h2>
+                <p>Ivan Kristoffer Vestidas</p>
+                <hr>
+                <h2>Projects</h2>
+                <p>Project 1: Weather Machine <b>(Python)</b></p>
+                <p>Project 2: Library System <b>(MySql)</b></p>
+                <hr>
+                <h2>About Me</h2>
+                <p align="left">Good day, I am Ivan and I am an aspirant to be a web developer/game developer. I am seeking for an opportunity to gain knowledge and enhance <br>my skills in this organization. I am a fast learner and I am willing to learn new programming languages, frameworks or technologies as long as I am capable <br>of doing so.</p>
+                    <hr>
+                    <h2>Education</h2>
+                    <p>> Bachelor of Science in Information Technology: University of The East (Present)</p>
+                    <p>> Senior Highschool: St. Dominic de Guzman School, 2019-2021</p>
+                    <p>> Elementary - Junior Highschool: St. Dominic de Guzman School (2009-2014)</p>
+                    <hr>
+                    <h2>Seminars</h2>
+                    <p>1. Byte by Byte</p>
+                    <p>2. IT Career</p>
+                    <p>3. Data Security</p>
+                    <hr>
+                    <h2>Hobbies & Interests</h2>
+                    <p>1. Programming</p>
+                    <p>2. Gaming</p>
+                    <p>3. Solving Riddles</p>
+                </div>
+            </div>
+        </div>
+        <a href="#topbutton" class="back-to-top"><i class="fas fa-angle-double-up"></i></a>
+    </body>
+</html>
+

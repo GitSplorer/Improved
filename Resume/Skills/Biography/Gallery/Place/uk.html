@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advertisement</title>
+    <style>
+        /* Reset default margin and padding */
+        body, h1, p, img {
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Set body background color */
+        body {
+            background: url('./placepic/ukbg.png') no-repeat center center fixed;
+            background-color: #252926; /* Dark background */
+            font-family: 'Comfortaa', sans-serif;
+            color: #fff; /* White text color */
+            line-height: 1.6;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh; /* Ensure the content stretches to at least the height of the viewport */
+        }
+
+        /* Advertisement container */
+        .advertisement {
+            background-color: #252926; /* Darker background */
+            border-radius: 20px;
+            padding: 20px;
+            max-width: 600px;
+            text-align: center;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4); /* Add a subtle shadow */
+            border: 2px solid #AF8C53; /* Border color */
+        }
+
+        /* Advertisement image */
+        .advertisement img {
+            width: 100%;
+            border-radius: 20px; /* Rounded corners for the image */
+            margin-bottom: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Add a shadow to the image */
+        }
+
+        /* Advertisement text */
+        .advertisement-text {
+            font-size: 18px;
+            margin-bottom: 20px;
+            text-align: justify;
+        }
+
+        /* Back button */
+        .back-button {
+            background-color: #AF8C53;
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin-top: 20px;
+            cursor: pointer;
+            border-radius: 8px;
+            transition: background-color 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Add a subtle shadow */
+        }
+
+        .back-button:hover {
+            background-color: #875f37;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="advertisement">
+        <img src="placepic/uk.png" alt="Australia">
+        <div class="advertisement-text">
+            <p style="font-size: 24px; font-weight: bold;">Welcome to <span style="color: #AF8C53;">United Kingdom</span></p>
+            <p>I want to go into the UK to travel and enjoy the place and especially to feel their weather in their, im alwayas thrilled to explore countries that have beautiful urban areas.</p>
+
+        </div>
+        <a href="../Place/place.html" class="back-button">Back</a>
+    </div>
+</body>
+</html>

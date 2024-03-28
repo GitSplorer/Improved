@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hybrid Portfolio - Gallery</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;700&family=Montserrat:wght@400;700&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"> <!-- Font Awesome -->
+    <style>
+        /* Reset default margin and padding */
+        body, h1, p, ul, li {
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Set body background color */
+        body {
+            background: url('musicss.png') no-repeat center center fixed;
+            background-size: cover;
+            background-color: #141311;
+            font-family: 'Comfortaa', sans-serif;
+            color: #fff; /* White text color */
+            line-height: 1.6;
+            display: flex;
+            flex-direction: column;
+            min-height: 200vh; /* Ensure the content stretches to at least the height of the viewport */
+        }
+
+
+        /* Navigation bar */
+        nav {
+            background-color: transparent;
+            color: #fff;
+            padding: 20px;
+            display: flex;
+            justify-content: flex-end; /* Align items to the left */
+            position: fixed; /* Fixed position */
+            width: 100%; /* Take up the full width of the viewport */
+            z-index: 1000;
+            top: 0; /* Position at the top */
+        }
+
+        .logo {
+            display: none;
+            font-size: 24px;
+            font-weight: 700;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .menu-icon {
+            display: none;
+            cursor: pointer;
+            color: #fff;
+            font-size: 24px;
+        }
+
+        .menu-icon:hover {
+            color: #00aa99; /* Light green on hover */
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+        }
+
+        nav ul li {
+            margin: 0 20px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #DFDFDF;
+            font-weight: bold;
+            font-family: 'Montserrat', sans-serif;
+            transition: color 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            color: #AF8C53;
+            text-decoration: underline;
+        }
+
+        .container {
+            padding: 20px;
+            margin: 0 auto; /* Center the container horizontally */
+            max-width: 1200px; /* Set maximum width for the container */
+            flex-grow: 1; /* Allow the container to grow to fill remaining space */
+            margin-top: 60px; /* Adjust to accommodate the fixed navbar */
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+
+        /* Gallery section */
+        .gallery {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            width: auto;
+        }
+
+        /* Music list */
+        .music-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            color: #fff;
+            display: flex; /* Change to flex to arrange items horizontally */
+            flex-wrap: wrap; /* Allow items to wrap to the next line */
+            justify-content: center; /* Center the music items */
+        }
+
+        /* Music item */
+        .music-item {
+            margin-right: 20px; /* Add margin between audio elements */
+            margin-bottom: 20px;
+        }
+
+        .music-item audio {
+            width: 250px; /* Set width for audio player */
+            margin-bottom: 10px; /* Adjust spacing */
+        }
+
+
+        h1 {
+            font-size: 36px;
+            color: #333;
+            text-align: center;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-family: 'Montserrat', sans-serif;
+            margin-top: 70px;
+        }
+        
+        /* Styles for the Spotify-like audio player */
+        .audio-container {
+            background-color: #252926;
+            border: 2px solid #AF8C53;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            width: 300px;
+            margin: 10px;
+        }
+
+        .audio-info {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .audio-title {
+            font-size: 18px;
+            color: #AF8C53;
+            margin-bottom: 5px;
+        }
+
+        .audio-artist {
+            font-size: 14px;
+            color: #AF8C53;
+        }
+
+        .audio-controls-container {
+            display: flex;
+            justify-content: center;
+        }
+
+        .audio-controls {
+            width: 100%;
+        }
+
+
+        /* Left side navigation bar */
+        .left-navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            background-color: rgba(0, 0, 0, 0.5);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px 10px;
+            width: 200px;
+            height: 100%;
+            color: #fff;
+            z-index: 1;
+            transition: left 0.3s ease;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start; /* Align items to the start of the container (top) */
+        }
+
+        .left-navbar:hover {    left: 0; /* Slide in when hovered */
+        }
+
+        .left-nav-list {
+            list-style-type: none;
+            margin: 30px 0 0;
+            padding: 0;
+            display: flex; /* Change display to flex */
+            flex-direction: column; /* Arrange items vertically */
+        }
+
+        .left-nav-list li {
+            margin-bottom: 10px;
+        }
+
+        .left-nav-list li a {
+            display: block;
+            color: #fff; /* Changed text color to white */
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+        }
+
+        .left-nav-list li a:hover {
+            color: #AF8C53;
+            text-decoration: none;
+        }
+
+        .left-nav-list li.separator {
+            height: 1px;
+            background-color: #ccc;
+            margin: 5px 0;
+        }
+
+        .left-nav-list li a[href="../Photo/photo.html"] i {
+            border: 2px solid transparent; /* Initially transparent border */
+            border-radius: 50%; /* Makes the icon circular */
+            padding: 10px; /* Add padding for better appearance */
+            transition: border-color 0.3s ease; /* Smooth transition for border color change */
+            margin-left: 20px;
+        }
+
+        .left-nav-list li a[href="../Photo/photo.html"]:hover i {
+            border-color: #AF8C53; /* Border color on hover */
+            color: #fff;
+        }
+
+        .left-nav-list li a[href="../Video/movie gallery/movie.html"] i {
+            border: 2px solid transparent; /* Initially transparent border */
+            border-radius: 50%; /* Makes the icon circular */
+            padding: 10px; /* Add padding for better appearance */
+            transition: border-color 0.3s ease; /* Smooth transition for border color change */
+            margin-left: 20px;
+        }
+
+        .left-nav-list li a[href="../Video/movie gallery/movie.html"]:hover i {
+            border-color: #AF8C53; /* Border color on hover */
+            color: #fff;
+        }
+
+
+
+        /* Back to top button */
+        .back-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #AF8C53;
+            color:  #fff;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 40px;
+            font-size: 20px;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+            z-index: 1000;
+        }
+
+        .back-to-top:hover {
+            background-color: #3a3a3a;
+        }
+
+    </style>
+</head>
+<body>
+    <h1 id="topbutton"><span style="color: #AF8C53;">SAFE</span><span style="color: white;"> SPACE</span></h1>
+    <nav>
+        <div class="logo">Logo</div>
+        <div class="menu-icon">&#9776;</div>
+        <ul>
+            <li><a href="../../../../../index.html">Home</a></li>
+            <li><a href="../../../../resume.html">Resume</a></li>
+            <li><a href="../../../skills.html">Skills & Biography</a></li>
+            <li><a href="music.html">Gallery</a></li>
+        </ul>
+    </nav>
+
+<!-- Left Nav -->
+    <nav class="left-navbar">
+        <ul class="left-nav-list">
+            <li><a href="#pop"><i class="fas fa-music"></i> POP</a></li>
+            <li class="separator"></li>
+            <li><a href="#opm"><i class="fas fa-guitar"></i> OPM</a></li>
+            <li class="separator"></li>
+            <li><a href="#r&b"><i class="fas fa-microphone-alt"></i> R&B</a></li>
+            <!-- Right arrow icon for biography -->
+            <li><a href="../Photo/photo.html" alt="skills" title="Skills"><i class="fas fa-arrow-left" title="TO PHOTO GALLERY">               
+            </i></a><a href="../Video/movie gallery/movie.html" alt="skills" title="Skills"><i class="fas fa-arrow-right" title="TO MOVIE GALLERY"></i></a></li>
+        </ul>
+    </nav>
+
+
+    <div class="container">
+        <div class="gallery">
+            <!-- Pop Music -->
+            <div class="genre-container">
+                <hr>
+                <h2 class="genre-heading" align="center" style="color: #AF8C53;" id="pop">POP</h2>
+                <ul class="music-list">
+                    <li class="music-item">
+                        <div class="audio-container">
+                            <div class="audio-info">
+                                <img src="../../../../../pictures/br.jpg" alt="Bruno Mars" width="250"  height="200">
+                                <h2 class="audio-title">FINESSE</h2>
+                                <p class="audio-artist">Bruno Mars</p>
+                            </div>
+                            <div class="audio-controls-container">
+                                <audio controls class="audio-controls">
+                                    <source src="../Music/pop/bruno-mars-finesse-official-audio_xgjwodcp.mp3" type="audio/mpeg">
+                                    Your browser does not support the audio element.
+                                </audio>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="music-item">
+                        <div class="audio-container">
+                            <div class="audio-info">
+                                <img src="../../../../../pictures/i.jpg" alt="Bruno Mars" width="250"  height="200">
+                                <h2 class="audio-title">THAT'S WHAT I LIKE</h2>
+                                <p class="audio-artist">Bruno Mars</p>
+                            </div>
+                            <div class="audio-controls-container">
+                                <audio controls class="audio-controls">
+                                    <source src="../Music/pop/bruno-mars-thats-what-i-like-official-music-video_gvrwmvrx.mp3" type="audio/mpeg">
+                                    Your browser does not support the audio element.
+                                </audio>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="music-item">
+                        <div class="audio-container">
+                            <div class="audio-info">
+                                <img src="../../../../../pictures/R.jpg" alt="Bruno Mars" width="250"  height="200">
+                                <h2 class="audio-title">THINKING OUT LOUD</h2>
+                                <p class="audio-artist">Ed Sheeran</p>
+                            </div>
+                            <div class="audio-controls-container">
+                                <audio controls class="audio-controls">
+                                    <source src="../Music/pop/ed-sheeran-thinking-out-loud-official-music-video_q8iyleyr.mp3" type="audio/mpeg">
+                                    Your browser does not support the audio element.
+                                </audio>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="music-item">
+                        <div class="audio-container">
+                            <div class="audio-info">
+                                <img src="../../../../../pictures/S.jpg" alt="Bruno Mars" width="250"  height="200">
+                                <h2 class="audio-title">STAY</h2>
+                                <p class="audio-artist">Justin Bieber & Kid Laroi</p>
+                            </div>
+                            <div class="audio-controls-container">
+                                <audio controls class="audio-controls">
+                                    <source src="../Music/pop/the-kid-laroi-justin-bieber-stay-official-video_98p180cd.mp3" type="audio/mpeg">
+                                    Your browser does not support the audio element.
+                                </audio>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="music-item">
+                        <div class="audio-container">
+                            <div class="audio-info">
+                                <img src="../../../../../pictures/WEEK.jpg" alt="Bruno Mars" width="250"  height="200">
+                                <h2 class="audio-title">SAVE YOUR TEARS</h2>
+                                <p class="audio-artist">Weeknd & Ariana Grande</p>
+                            </div>
+                            <div class="audio-controls-container">
+                                <audio controls class="audio-controls">
+                                    <source src="../Music/pop/the-weeknd-ariana-grande-save-your-tears-remix-official-video_ozghbr3n.mp3" type="audio/mpeg">
+                                    Your browser does not support the audio element.
+                                </audio>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+                <hr>
+            </div>
+            
+            <!-- OPM Music -->
+            <div class="genre-container">
+                <h2 class="genre-heading" align="center" style="color: #AF8C53;" id="opm">OPM</h2>
+                <ul class="music-list">
+                    <li class="music-item">
+                        <div class="audio-container">
+                            <div class="audio-info">
+                                <img src="../../../../../pictures/pom.jpg" alt="Bruno Mars" width="250"  height="200">
+                                <h2 class="audio-title">GOT TO BELIEVE</h2>
+                                <p class="audio-artist">David Pomeranz</p>
+                            </div>
+                            <div class="audio-controls-container">
+                                <audio controls class="audio-controls">
+                                    <source src="../Music/opm/david-pomeranz-got-to-believe-in-magic-official-lyric-video_xlbwk6oh.mp3" type="audio/mpeg">
+                                    Your browser does not support the audio element.
+                                </audio>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="music-item">
+                        <div class="audio-container">
+                            <div class="audio-info">
+                                <img src="../../../../../pictures/here.jpg" alt="Bruno Mars" width="250"  height="200">
+                                <h2 class="audio-title">HERE I AM</h2>
+                                <p class="audio-artist">Air Supply</p>
+                            </div>
+                            <div class="audio-controls-container">
+                                <audio controls class="audio-controls">
+                                    <source src="../Music/opm/here-i-am-air-supply-lyrics_ieu97ctj.mp3" type="audio/mpeg">
+                                    Your browser does not support the audio element.
+                                </audio>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="music-item">
+                        <div class="audio-container">
+                            <div class="audio-info">
+                                <img src="../../../../../pictures/river.jpg" alt="Bruno Mars" width="250"  height="200">
+                                <h2 class="audio-title">BY YOUR SIDE</h2>
+                                <p class="audio-artist">RiverMaya</p>
+                            </div>
+                            <div class="audio-controls-container">
+                                <audio controls class="audio-controls">
+                                    <source src="../Music/opm/rivermaya-214-lyric-video_txe2fumd.mp3" type="audio/mpeg">
+                                    Your browser does not support the audio element.
+                                </audio>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="music-item">
+                        <div class="audio-container">
+                            <div class="audio-info">
+                                <img src="../../../../../pictures/apo.jpg" alt="Bruno Mars" width="250"  height="200">
+                                <h2 class="audio-title">WHEN I MET YOU</h2>
+                                <p class="audio-artist">Apo Hiking Society</p>
+                            </div>
+                            <div class="audio-controls-container">
+                                <audio controls class="audio-controls">
+                                    <source src="../Music/opm/when-i-met-you_1kn0ujrn.mp3" type="audio/mpeg">
+                                    Your browser does not support the audio element.
+                                </audio>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="music-item">
+                        <div class="audio-container">
+                            <div class="audio-info">
+                                <img src="../../../../../pictures/with.jpg" alt="Bruno Mars" width="250"  height="200">
+                                <h2 class="audio-title">WITH A SMILE</h2>
+                                <p class="audio-artist">Eraser Heads</p>
+                            </div>
+                            <div class="audio-controls-container">
+                                <audio controls class="audio-controls">
+                                    <source src="../Music/opm/with-a-smile-eraserheads-lyrics_no5ees3x.mp3" type="audio/mpeg">
+                                    Your browser does not support the audio element.
+                                </audio>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+                <hr>
+            </div>
+
+            <!-- R&B Music -->
+            <div class="genre-container">
+                <h2 class="genre-heading" align="center" style="color: #AF8C53;" id="r&b">R&B</h2>
+                <ul class="music-list">
+                    <li class="music-item">
+                        <div class="audio-container">
+                            <div class="audio-info">
+                                <img src="../../../../../pictures/limbo.png" alt="Bruno Mars" width="250"  height="200">
+                                <h2 class="audio-title">LIMBO</h2>
+                                <p class="audio-artist">Keshi</p>
+                            </div>
+                            <div class="audio-controls-container">
+                                <audio controls class="audio-controls">
+                                    <source src="../Music/r&b/keshi-limbo-lyric-video_cj0fioq1.mp3" type="audio/mpeg">
+                                    Your browser does not support the audio element.
+                                </audio>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="music-item">
+                        <div class="audio-container">
+                            <div class="audio-info">
+                                <img src="../../../../../pictures/creepin.png" alt="Bruno Mars" width="250"  height="200">
+                                <h2 class="audio-title">CREEPIN</h2>
+                                <p class="audio-artist">Weeknd & Metro Boomin</p>
+                            </div>
+                            <div class="audio-controls-container">
+                                <audio controls class="audio-controls">
+                                    <source src="../Music/r&b/metro-boomin-the-weeknd-21-savage-creepin_dflm9gth.mp3" type="audio/mpeg">
+                                    Your browser does not support the audio element.
+                                </audio>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="music-item">
+                        <div class="audio-container">
+                            <div class="audio-info">
+                                <img src="../../../../../pictures/callout.jpg" alt="Bruno Mars" width="250"  height="200">
+                                <h2 class="audio-title">CALL OUT MY NAME</h2>
+                                <p class="audio-artist">Weeknd</p>
+                            </div>
+                            <div class="audio-controls-container">
+                                <audio controls class="audio-controls">
+                                    <source src="../Music/r&b/the-weeknd-call-out-my-name-official-video_vv2nnmov.mp3" type="audio/mpeg">
+                                    Your browser does not support the audio element.
+                                </audio>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="music-item">
+                        <div class="audio-container">
+                            <div class="audio-info">
+                                <img src="../../../../../pictures/REMINDER.jpg" alt="Bruno Mars" width="250"  height="200">
+                                <h2 class="audio-title">REMINDER</h2>
+                                <p class="audio-artist">Weeknd</p>
+                            </div>
+                            <div class="audio-controls-container">
+                                <audio controls class="audio-controls">
+                                    <source src="../Music/r&b/the-weeknd-reminder-audio_orvrauv6.mp3" type="audio/mpeg">
+                                    Your browser does not support the audio element.
+                                </audio>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="music-item">
+                        <div class="audio-container">
+                            <div class="audio-info">
+                                <img src="../../../../../pictures/saveyourtears.jpg" alt="Bruno Mars" width="250"  height="200">
+                                <h2 class="audio-title">SAVE YOUR TEARS</h2>
+                                <p class="audio-artist">Weeknd</p>
+                            </div>
+                            <div class="audio-controls-container">
+                                <audio controls class="audio-controls">
+                                    <source src="../Music/r&b/the-weeknd-save-your-tears-official-music-video_02hnlnhm.mp3" type="audio/mpeg">
+                                    Your browser does not support the audio element.
+                                </audio>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <a href="#topbutton" class="back-to-top"><i class="fas fa-angle-double-up"></i></a>
+</body>
+</html>
+
